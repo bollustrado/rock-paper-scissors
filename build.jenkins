@@ -1,0 +1,21 @@
+// Powered by Infostretch 
+
+timestamps {
+
+node () {
+
+	stage ('test - Checkout') {
+ 	 checkout([$class: 'GitSCM', branches: [[name: '*/patch-1']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'ssh-key', url: 'git@github.com:bollustrado/rock-paper-scissors.git']]]) 
+	}
+	stage ('test - Build') {
+ 			// Maven build step
+	withMaven { 
+ 			if(isUnix()) {
+ 				sh "mvn clean install " 
+			} else { 
+ 				bat "mvn clean install " 
+			} 
+ 		} 
+	}
+}
+}
