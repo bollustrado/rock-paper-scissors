@@ -1,5 +1,5 @@
 #!groovy
-properyies([disableConkurentBuilds()])
+properyies([disableConcurrentBuilds()])
 
 timestamps {
 
